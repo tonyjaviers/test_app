@@ -33,7 +33,14 @@ class LibrosController < ApplicationController
   end
 
   def show
-    @libro=Libro.find(params[:id])
+    @libro = Libro.find(params[:id])
+  end
+
+  def destroy
+    @libro = Libro.find(params[:id])
+    @libro.destroy
+    flash[:notice] = "libro eliminado"
+    redirect_to libro_path(@libro)
   end
 
   private

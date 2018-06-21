@@ -10,8 +10,9 @@
       <tr>
         <td><%= libro.title %></td>
         <td><%= libro.description %></td>
-        <td><%=  link_to "Edit",edit_libro_path(libro) %></td>
-        <td><%=  link_to "Show",libro_path(libro) %></td>
+        <td><%= link_to "Edit",edit_libro_path(libro) %></td>
+        <td><%= link_to "Show",libro_path(libro) %></td>
+        <td><%= link_to "Delete",libro_path(libro),method:  :delete, data: {confirm:"Are you sure?"} %></td>
       </tr>
   <% end %>
 </table>

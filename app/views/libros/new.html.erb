@@ -1,5 +1,14 @@
 <h1>Crear libros</h1>
 
+<% if @libro.errors.any? %>
+<ul>
+  <% @libro.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
 <%= form_for @libro do |f|%>
 <p>
 <%= f.label:title %></br>

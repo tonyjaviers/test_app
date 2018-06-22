@@ -1,5 +1,7 @@
 class LibrosController < ApplicationController
 
+  before_action:set_libro, only:[:edit, :update, :show, :destroy]
+
   def index
     @libros=Libro.all
   end
@@ -9,7 +11,7 @@ class LibrosController < ApplicationController
   end
 
   def create
-    @libro=Libro.new(libro_params)
+    @libro = Libro.new(libro_params)
     if @libro.save
       flash[:notice] = "Libro fue creado"
       redirect_to libro_path(@libro)
@@ -19,7 +21,6 @@ class LibrosController < ApplicationController
   end
 
   def update
-    @libro=Libro.find(params[:id])
     if @libro.update(libro_params)
       flash[:notice] = "Libro was successfully updated"
       redirect_to libro_path(@libro)
@@ -29,21 +30,24 @@ class LibrosController < ApplicationController
   end
 
   def edit
-    @libro = Libro.find(params[:id])
+
   end
 
   def show
-    @libro = Libro.find(params[:id])
+
   end
 
   def destroy
-    @libro = Libro.find(params[:id])
     @libro.destroy
     flash[:notice] = "libro eliminado"
     redirect_to libro_path(@libro)
   end
 
   private
+
+  def set_libro
+  @libro = Libro.find(params[:id])
+  end
 
   def libro_params
     params.require(:libro).permit(:title,:description)
